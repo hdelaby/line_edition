@@ -1,3 +1,6 @@
 */*.swp
 line_editing
 */*.DS_Store
+obj/
+libft/libft.a
+libft/*.o

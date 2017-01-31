@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:01:51 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/31 10:04:36 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/01/31 10:20:46 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft.h"
 # include <termios.h>
+# include <term.h>
+# include <curses.h>
 
 int		term_basic_config(struct termios *old_term);
 int		term_config(void);

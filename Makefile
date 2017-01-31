@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/01/31 10:04:54 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/01/31 10:19:07 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ LIBFLAGS= -Llibft -lft -ltermcap
 
 INC= -I./includes -I./libft/includes
 INC_PATH= includes
-DEPS= line_editing.h\
-	  term_config.h
+INC_FILES= line_editing.h\
+		   term_config.h
+DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
 SRC_NAME = main.c\
@@ -42,7 +43,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(LIBFLAGS) $(INC) -o $@ $^
 	@echo "\033[32m$(NAME) created successfully\033[0m"
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/$(DEPS)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(DEPS)
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
