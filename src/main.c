@@ -6,12 +6,16 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/31 14:25:02 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:39:05 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_editing.h"
 #include "ft_printf.h"
+
+/*
+** It is possible to encode parameters with tgoto
+*/
 
 void	ft_dlstaddnext(t_dlist **head, t_dlist *new)
 {
@@ -72,14 +76,16 @@ char	*line_editing(void)
 		key_pressed = ft_getch();
 		if (key_pressed == '\n')
 			break;
-		else if (key_pressed == 27)
+		if (key_pressed == 27)
 		{
-			tputs(tgetstr("le", NULL), 0, &tc_putc);
-			lst = lst->prev;
+			tputs(tgetstr("cr", NULL), 1, &tc_putc);
+			tputs(tgoto(tgetstr("SR", NULL), 0, 4), 1, &tc_putc);
 		}
 		else
+		{
 			ft_dlstaddnext(&lst, ft_dlstnew(&key_pressed, 2));
-		print_dlst(lst);
+			print_dlst(lst);
+		}
 	}
 	return ("LOL");
 }
