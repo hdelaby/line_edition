@@ -6,11 +6,11 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/01/29 12:15:19 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/01/31 10:04:54 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= ft_select
+NAME= line_editing
 CC= gcc
 CFLAGS= -Wall -Wextra -Werror
 
@@ -20,19 +20,12 @@ LIBFLAGS= -Llibft -lft -ltermcap
 
 INC= -I./includes -I./libft/includes
 INC_PATH= includes
-DEPS= ft_select.h
+DEPS= line_editing.h\
+	  term_config.h
 
 SRC_PATH = src
 SRC_NAME = main.c\
-		   select_init.c\
-		   display.c\
-		   select_styling.c\
-		   term_config.c\
-		   sighandling.c\
-		   getters.c\
-		   tc_putc.c\
-		   ft_getch.c\
-		   select_nav.c
+		   term_config.c
 
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
