@@ -1,4 +1,5 @@
 */*.swp
+*/*/*.swp
 line_editing
 */*.DS_Store
 obj/
