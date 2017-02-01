@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_editing.h                                     :+:      :+:    :+:   */
+/*   ft_getch.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 08:58:51 by hdelaby          ###   ########.fr       */
+/*   Created: 2017/02/01 08:48:00 by hdelaby           #+#    #+#             */
+/*   Updated: 2017/02/01 08:52:43 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LINE_EDITING_H
-# define LINE_EDITING_H
-
-# include "libft.h"
-# include "term_config.h"
-# include <signal.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-
-char	*line_editing(void);
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <unistd.h>
 
 /*
-** ft_getch.c
+** This function reads 3 bytes at a time when the terms is in canonical mode
+** Man getch can be really interesting for that.
 */
 
-int		ft_getch(void);
-
-/*
-** ft_dlstaddnext.c
-*/
-
-void	ft_dlstaddnext(t_dlist **head, t_dlist *new);
-
-/*
-** tc_putc.c
-*/
-
-int		tc_putc(int c);
-
-#endif
+int		ft_getch(void)
+{
+	char	buf[3];
+	read(0, buf, 3);
+	return (buf[0]);
+}
