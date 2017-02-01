@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:30:34 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/31 10:01:18 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 17:26:00 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		term_config(void)
 		return (-1);
 	term_basic_config(&old_term);
 	term.c_lflag &= ~(ICANON | ECHO);
+	term.c_oflag &= ~(OXTABS);
 	if (tcsetattr(0, TCSAFLUSH, &term))
 		return (-1);
 	return (0);

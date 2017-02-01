@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 14:41:21 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 17:34:18 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,32 @@
 /*
 ** It is possible to encode parameters with tgoto
 */
+
+int		auto_complete(t_dlist **lst)
+{
+	char	*str;
+	int		i;
+	t_dlist	*ptr;
+
+	i = 0;
+	ptr = *lst;
+	while (ptr && ptr->prev && ft_strcmp(ptr->prev->content, " "))
+	{
+		ptr = ptr->prev;
+		i++;
+	}
+	str = (char *)malloc(sizeof(char) * i + 1);
+	char *test = str;
+	while (i)
+	{
+		*(str++) = *((char *)ptr->content);
+		ptr = ptr->next;
+		i--;
+	}
+	*str = '\0';
+	ft_putstr(test);
+	return (i);
+}
 
 void	print_dlst(t_dlist *lst)
 {
@@ -48,7 +74,9 @@ char	*line_editing(void)
 			arrow_right(&line, &lst);
 		else if (key_pressed == KEY_DC || key_pressed == KEY_BACKSPACE)
 			delete_char(&line, key_pressed, &lst);
-		else
+		else if (key_pressed == KEY_STAB)
+			auto_complete(&lst);
+		else if (key_pressed > 31)
 			insert_char(&line, key_pressed, &lst);
 	}
 	ft_putchar('\n');

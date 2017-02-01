@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 08:48:00 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 14:55:23 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 17:28:36 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	unique_char()
 /*
 ** This function reads 1 byte at a time when the terms is in canonical mode
 ** Man getch can be really interesting for that.
-** SPECIAL CASE FOR KEY_DC!! READ ONCE MORE
 */
 
 int		ft_getch(void)
@@ -35,6 +34,8 @@ int		ft_getch(void)
 	int		key;
 
 	key = unique_char();
+	if (key == 9)
+		return (KEY_STAB);
 	if (key == 127)
 		return (KEY_BACKSPACE);
 	if (key == 27)
@@ -46,7 +47,10 @@ int		ft_getch(void)
 		if (key == 68)
 			return (KEY_LEFT);
 		if (key == 51)
+		{
+			unique_char();
 			return (KEY_DC);
+		}
 	}
 	return (key);
 }
