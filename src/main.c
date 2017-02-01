@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 10:54:46 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 11:10:42 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*line_editing(void)
 	}
 	ft_putchar('\n');
 	print_dlst(lst);
-	return ("LOL");
+	return ("\nDONE");
 }
 
 int		main(void)
