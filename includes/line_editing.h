@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 09:17:05 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 10:39:52 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct	s_line
 char			*line_editing(void);
 
 /*
+** cursor_motion.c
+*/
+
+int				arrow_left(t_line *line, t_dlist **lst);
+int				arrow_right(t_line *line, t_dlist **lst);
+
+/*
 ** ft_getch.c
 */
 
@@ -39,6 +46,12 @@ int				ft_getch(void);
 */
 
 void			ft_dlstaddnext(t_dlist **head, t_dlist *new);
+
+/*
+** get_input.c
+*/
+
+int				insert_char(t_line *line, int key, t_dlist **lst);
 
 /*
 ** tc_putc.c

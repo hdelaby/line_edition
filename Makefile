@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/01 09:00:52 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/01 10:24:24 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ INC_FILES= line_editing.h\
 DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
-SRC_NAME = ft_dlstaddnext.c\
+SRC_NAME = cursor_motion.c\
+		   ft_dlstaddnext.c\
 		   ft_getch.c\
+		   get_input.c\
 		   main.c\
 		   tc_putc.c\
 		   term_config.c

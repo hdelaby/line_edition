@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getch.c                                         :+:      :+:    :+:   */
+/*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 08:48:00 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 10:10:22 by hdelaby          ###   ########.fr       */
+/*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
+/*   Updated: 2017/02/01 10:58:29 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <curses.h>
+#include "line_editing.h"
+#include "term_config.h"
 
-/*
-** This function reads 3 bytes at a time when the terms is in canonical mode
-** Man getch can be really interesting for that.
-*/
-
-int		ft_getch(void)
+int		insert_char(t_line *line, int key, t_dlist **lst)
 {
-	char	buf[3];
-	read(0, buf, 3);
-	if (buf[0] == 27)
-	{
-		if (buf[2] == 67)
-			return (KEY_RIGHT);
-		if (buf[2] == 68)
-			return (KEY_LEFT);
-	}
-	return (buf[0]);
+	tputs(tgetstr("im", NULL), 1, &tc_putc);
+	line->length++;
+	line->cursor++;
+	ft_dlstaddnext(lst, ft_dlstnew(&key, 2));
+	if (line->length != line->cursor && line->cursor && (*lst)->prev) 
+		*lst = (*lst)->prev;
+	ft_putchar_fd(key, 0);
+	tputs(tgetstr("ei", NULL), 1, &tc_putc);
+	return (0);
 }

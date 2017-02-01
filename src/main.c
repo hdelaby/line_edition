@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 09:18:58 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 10:54:46 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,20 @@ char	*line_editing(void)
 
 	lst = NULL;
 	ft_bzero(&line, sizeof(t_line));
-	line.length = 1;
 	while (42)
 	{
 		key_pressed = ft_getch();
 		if (key_pressed == '\n')
 			break;
-		if (key_pressed == 127)
-		{
-			line.length++;
-			tputs(tgetstr("le", NULL), 1, &tc_putc);
-			tputs(tgetstr("dc", NULL), 1, &tc_putc);
-		}
+		if (key_pressed == KEY_LEFT)
+			arrow_left(&line, &lst);
+		else if (key_pressed == KEY_RIGHT)
+			arrow_right(&line, &lst);
 		else
-		{
-			line.length--;
-			ft_dlstaddnext(&lst, ft_dlstnew(&key_pressed, 2));
-			ft_putchar_fd(key_pressed, 0);
-		}
+			insert_char(&line, key_pressed, &lst);
 	}
-	ft_putnbr(line.length);
+	ft_putchar('\n');
+	print_dlst(lst);
 	return ("LOL");
 }
 
