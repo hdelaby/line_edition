@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 09:00:39 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 09:18:58 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,31 @@ void	print_dlst(t_dlist *lst)
 char	*line_editing(void)
 {
 	int		key_pressed;
-	int		i;
+	t_line	line;
 	t_dlist	*lst;
 
 	lst = NULL;
-	i = 0;
+	ft_bzero(&line, sizeof(t_line));
+	line.length = 1;
 	while (42)
 	{
 		key_pressed = ft_getch();
 		if (key_pressed == '\n')
 			break;
-		if (key_pressed == 27)
+		if (key_pressed == 127)
 		{
+			line.length++;
 			tputs(tgetstr("le", NULL), 1, &tc_putc);
 			tputs(tgetstr("dc", NULL), 1, &tc_putc);
 		}
 		else
 		{
+			line.length--;
 			ft_dlstaddnext(&lst, ft_dlstnew(&key_pressed, 2));
 			ft_putchar_fd(key_pressed, 0);
 		}
 	}
+	ft_putnbr(line.length);
 	return ("LOL");
 }
 
