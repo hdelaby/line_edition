@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 13:47:57 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 14:08:34 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int		insert_char(t_line *line, int key, t_dlist **lst)
 
 int		delete_char(t_line *line, int key, t_dlist **lst)
 {
-	(void)key;
-	tputs(tgetstr("le", NULL), 1, &tc_putc);
+	if (key == KEY_DL)
+		if (arrow_left(line, lst))
+			return (1);
 	tputs(tgetstr("dc", NULL), 1, &tc_putc);
 	ft_dlstremovenode(lst);
 	line->length--;
