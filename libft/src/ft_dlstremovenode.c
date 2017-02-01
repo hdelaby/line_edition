@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 16:33:06 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/21 16:36:58 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 13:21:27 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_dlstremovenode(t_dlist **head)
 		if ((*head)->next)
 			(*head)->next->prev = (*head)->prev;
 		ptr = *head;
-		*head = (*head)->next ? (*head)->next : ft_dlstgethead(*head);
+		*head = (*head)->next ? (*head)->next : (*head)->prev;
 		free(ptr->content);
 		free(ptr);
 	}

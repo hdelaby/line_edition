@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 11:10:42 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 13:49:39 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	print_dlst(t_dlist *lst)
 	lst = ft_dlstgethead(lst);
 	while (lst)
 	{
-		ft_putstr_fd(lst->content, 0);
+		if (ft_strcmp(lst->content, "\n"))
+			ft_putstr_fd(lst->content, 0);
 		lst = lst->next;
 	}
 }
@@ -33,7 +34,8 @@ char	*line_editing(void)
 	t_line	line;
 	t_dlist	*lst;
 
-	lst = NULL;
+	key_pressed = 10;
+	lst = ft_dlstnew(&key_pressed, 2);
 	ft_bzero(&line, sizeof(t_line));
 	while (42)
 	{
@@ -44,6 +46,8 @@ char	*line_editing(void)
 			arrow_left(&line, &lst);
 		else if (key_pressed == KEY_RIGHT)
 			arrow_right(&line, &lst);
+		else if (key_pressed == KEY_DC || key_pressed == KEY_DL)
+			delete_char(&line, key_pressed, &lst);
 		else
 			insert_char(&line, key_pressed, &lst);
 	}

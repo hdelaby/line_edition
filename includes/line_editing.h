@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 10:39:52 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/01 11:21:14 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			ft_dlstaddnext(t_dlist **head, t_dlist *new);
 ** get_input.c
 */
 
+int				delete_char(t_line *line, int key, t_dlist **lst);
 int				insert_char(t_line *line, int key, t_dlist **lst);
 
 /*
