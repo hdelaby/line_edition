@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/01 10:24:24 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/02 12:12:51 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,13 @@ LIBFLAGS= -Llibft -lft -ltermcap
 INC= -I./includes -I./libft/includes
 INC_PATH= includes
 INC_FILES= line_editing.h\
-		   term_config.h
+		   term_config.h\
+		   auto_completion.h
 DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
-SRC_NAME = cursor_motion.c\
+SRC_NAME = auto_completion.c\
+		   cursor_motion.c\
 		   ft_dlstaddnext.c\
 		   ft_getch.c\
 		   get_input.c\

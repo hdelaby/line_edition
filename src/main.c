@@ -6,42 +6,17 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 17:34:18 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/02 12:12:19 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_editing.h"
+#include "auto_completion.h"
 #include "ft_printf.h"
 
 /*
 ** It is possible to encode parameters with tgoto
 */
-
-int		auto_complete(t_dlist **lst)
-{
-	char	*str;
-	int		i;
-	t_dlist	*ptr;
-
-	i = 0;
-	ptr = *lst;
-	while (ptr && ptr->prev && ft_strcmp(ptr->prev->content, " "))
-	{
-		ptr = ptr->prev;
-		i++;
-	}
-	str = (char *)malloc(sizeof(char) * i + 1);
-	char *test = str;
-	while (i)
-	{
-		*(str++) = *((char *)ptr->content);
-		ptr = ptr->next;
-		i--;
-	}
-	*str = '\0';
-	ft_putstr(test);
-	return (i);
-}
 
 void	print_dlst(t_dlist *lst)
 {
