@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:55:23 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/02 13:55:47 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/02 14:01:44 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*check_dir(char *dir_path, char *fname)
 	return (flag == 1 ? dir_path : NULL);
 }
 
-int		find_occurences(char *path)
+int		find_occurences(char *path, t_dlst *lst)
 {
 	char	*fname;
 	char	*ret;
@@ -65,7 +65,7 @@ int		find_occurences(char *path)
 		*(fname++) = '\0';
 		ret = check_dir(path, fname);
 		if (ret)
-			ft_putstr(ret);
+			ret += ft_strlen(fname);
 	}
 	return (0);
 }
@@ -86,6 +86,6 @@ int		auto_complete(t_dlist **lst)
 	str = ft_dlst_to_nstr(ptr, i);
 	if (!str)
 		return (1);
-	find_occurences(str);
+	find_occurences(str, lst);
 	return (0);
 }
