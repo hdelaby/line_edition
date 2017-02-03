@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:55:23 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/03 10:45:40 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/03 11:54:55 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,18 @@ char	*check_dir(char *dir_path, char *fname)
 
 /* 
 ** Change the name of the function.
-** Also need to insert '/' if the file is a dir, ' ' otherwise.
 */
 
-void	ft_str_to_dlst(char *str, t_dlist **lst, t_line *line)
+void	ft_str_to_dlst(char *path, char *str, t_dlist **lst, t_line *line)
 {
+	path = ft_strjoin(path, str);
 	while (*str)
 		insert_char(line, *(str++), lst);
-	//check if file is dir or not
-	insert_char(line, '/', lst);
+	if (ft_isdir(path))
+		insert_char(line, '/', lst);
+	else
+		insert_char(line, ' ', lst);
+	free(path);
 }
 
 int		find_occurences(char *path, t_dlist **lst, t_line *line)
@@ -79,11 +82,12 @@ int		find_occurences(char *path, t_dlist **lst, t_line *line)
 	{
 		*(fname++) = '\0';
 		ret = check_dir(path, fname);
+		*(fname - 1) = '/';
 	}
 	else
 		ret = check_dir(".", path);
 	if (ret)
-		ft_str_to_dlst(ret, lst, line);
+		ft_str_to_dlst(path, ret, lst, line);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:49:22 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/13 15:53:29 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/03 11:45:10 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int		ft_isdir(char *path)
 
 	stat(path, &buf);
 	if (ft_get_ftype(buf.st_mode) == 'd')
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
