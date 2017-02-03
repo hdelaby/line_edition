@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/02 12:12:19 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/03 09:01:30 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*line_editing(void)
 		else if (key_pressed == KEY_DC || key_pressed == KEY_BACKSPACE)
 			delete_char(&line, key_pressed, &lst);
 		else if (key_pressed == KEY_STAB)
-			auto_complete(&lst);
+			auto_complete(&lst, &line);
 		else if (key_pressed > 31)
 			insert_char(&line, key_pressed, &lst);
 	}

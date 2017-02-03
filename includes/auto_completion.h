@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:55:54 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/02 13:32:11 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/03 09:04:52 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "line_editing.h"
 # include <dirent.h>
 
-int		auto_complete(t_dlist **lst);
+int		auto_complete(t_dlist **lst, t_line *line);
 
 #endif
