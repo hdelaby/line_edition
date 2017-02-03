@@ -29,6 +29,7 @@ SRC_PATH = src
 SRC_NAME = auto_completion.c\
 		   cursor_motion.c\
 		   ft_dlstaddnext.c\
+		   ft_dlst_to_nstr.c\
 		   ft_getch.c\
 		   get_input.c\
 		   main.c\

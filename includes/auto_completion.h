@@ -20,4 +20,6 @@
 
 int		auto_complete(t_dlist **lst, t_line *line);
 
+char	*ft_dlst_to_nstr(t_dlist *lst, size_t n);
+
 #endif
