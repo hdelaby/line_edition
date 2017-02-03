@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 11:55:23 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/03 10:30:10 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/03 10:45:40 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int		find_occurences(char *path, t_dlist **lst, t_line *line)
 	char	*ret;
 
 	fname = ft_strrchr(path, '/');
-	if (fname)
+	if (*path == '/')
+		ret = check_dir("/", path + 1);
+	else if (fname)
 	{
 		*(fname++) = '\0';
 		ret = check_dir(path, fname);
