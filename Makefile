@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/02 12:12:51 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/06 15:05:26 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ INC= -I./includes -I./libft/includes
 INC_PATH= includes
 INC_FILES= line_editing.h\
 		   term_config.h\
-		   auto_completion.h
+		   auto_completion.h\
+		   history.h
 DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
@@ -32,6 +33,7 @@ SRC_NAME = auto_completion.c\
 		   ft_dlst_to_nstr.c\
 		   ft_getch.c\
 		   get_input.c\
+		   test_history.c\
 		   main.c\
 		   tc_putc.c\
 		   term_config.c

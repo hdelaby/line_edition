@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 08:48:00 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 17:28:36 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/06 13:37:43 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int		ft_getch(void)
 	{
 		key = unique_char();
 		key = unique_char();
+		if (key == 65)
+			return (KEY_UP);
+		if (key == 66)
+			return (KEY_DOWN);
 		if (key == 67)
 			return (KEY_RIGHT);
 		if (key == 68)

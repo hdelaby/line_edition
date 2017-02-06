@@ -6,13 +6,14 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/03 09:01:30 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/06 15:25:18 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_editing.h"
 #include "auto_completion.h"
 #include "ft_printf.h"
+#include "history.h"
 
 /*
 ** It is possible to encode parameters with tgoto
@@ -34,10 +35,12 @@ char	*line_editing(void)
 	int		key_pressed;
 	t_line	line;
 	t_dlist	*lst;
+	t_dlist	*hist;
 
 	key_pressed = 10;
 	lst = ft_dlstnew(&key_pressed, 2);
 	ft_bzero(&line, sizeof(t_line));
+	hist = retrieve_history("sh_history");
 	while (42)
 	{
 		key_pressed = ft_getch();
@@ -47,6 +50,8 @@ char	*line_editing(void)
 			arrow_left(&line, &lst);
 		else if (key_pressed == KEY_RIGHT)
 			arrow_right(&line, &lst);
+		else if (key_pressed == KEY_UP)
+			old_hist_entry(&lst, &hist, &line);
 		else if (key_pressed == KEY_DC || key_pressed == KEY_BACKSPACE)
 			delete_char(&line, key_pressed, &lst);
 		else if (key_pressed == KEY_STAB)
