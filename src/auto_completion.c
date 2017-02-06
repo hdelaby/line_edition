@@ -42,6 +42,8 @@ char	*check_dir(char *dir_path, char *fname)
 void	ft_str_to_dlst(char *path, char *str, t_dlist **lst, t_line *line)
 {
 	path = ft_strjoin(path, str);
+	if (!path)
+		return ;
 	while (*str)
 		insert_char(line, *(str++), lst);
 	if (ft_isdir(path))
