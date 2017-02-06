@@ -1,5 +1,24 @@
-#include "libft.h"
-#include <fcntl.h>
+#include "history.h"
+
+/*
+** Opens the file pointed by path and appends the new history entry.
+** Returns 0 on success, 1 otherwise.
+*/
+
+int		append_history(char *path, char *entry)
+{
+	int		fd;
+
+	fd = open(path, O_WRONLY | O_APPEND | O_CREAT);
+	if (fd == -1)
+	{
+		ft_putendl_fd("Could not open history", 2);
+		return (1);
+	}
+	ft_putendl_fd(entry, fd);
+	close(fd);
+	return (0);
+}
 
 /*
 ** Takes the path to the history file as an argument and processes
@@ -26,16 +45,5 @@ t_dlist	*retrieve_history(char *path)
 		free(line);
 	}
 	close(fd);
-	while (hist)
-	{
-		ft_putendl(hist->content);
-		hist = hist->next;
-	}
-	return (NULL);
-}
-
-int		main(void)
-{
-	retrieve_history("history");
-	return (0);
+	return (hist);
 }
