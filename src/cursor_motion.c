@@ -6,13 +6,27 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 10:45:52 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 12:01:42 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_editing.h"
 #include "term_config.h"
 #include "ft_printf.h"
+
+int		line_end(t_line *line, t_dlist **lst)
+{
+	while (!arrow_right(line, lst))
+		continue ;
+	return (0);
+}
+
+int		line_begin(t_line *line, t_dlist **lst)
+{
+	while (!arrow_left(line, lst))
+		continue ;
+	return (0);
+}
 
 int		arrow_left(t_line *line, t_dlist **lst)
 {

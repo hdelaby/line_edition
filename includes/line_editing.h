@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/06 15:06:35 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 12:02:21 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_line
 {
 	size_t	cursor;
 	size_t	length;
+	size_t	hist_depth;
 }				t_line;
 
 char			*line_editing(void);
@@ -34,6 +35,8 @@ char			*line_editing(void);
 
 int				arrow_left(t_line *line, t_dlist **lst);
 int				arrow_right(t_line *line, t_dlist **lst);
+int				line_end(t_line *line, t_dlist **lst);
+int				line_begin(t_line *line, t_dlist **lst);
 
 /*
 ** ft_getch.c

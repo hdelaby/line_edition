@@ -6,26 +6,30 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 10:06:38 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 12:41:59 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
+#include "auto_completion.h"
+#include "ft_printf.h"
 
 int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
 
-	if ((*hist)->prev == NULL)
+	if (!(*hist) || !(*hist)->prev)
 		return (1);
-	while (!arrow_right(line, lst))
-		continue ;
+	line->hist_depth--;
+	line_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
-		continue ;
+		continue;
 	*hist = (*hist)->prev;
 	entry = (*hist)->content;
 	while (*entry)
 		insert_char(line, *(entry++), lst);
+	if (!line->hist_depth)
+		ft_dlstremovenode(hist);
 	return (0);
 }
 
@@ -33,16 +37,23 @@ int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
 
-	if ((*hist)->next == NULL)
+	if (!(*hist) || !(*hist)->next)
 		return (1);
-	while (!arrow_right(line, lst))
-		continue ;
+	line_begin(line, lst);
+	if (!line->hist_depth)
+	{
+		entry = ft_dlst_to_nstr(*lst, 5);
+		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1));
+		free(entry);
+	}
+	line_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
 		continue ;
 	*hist = (*hist)->next;
 	entry = (*hist)->content;
 	while (*entry)
 		insert_char(line, *(entry++), lst);
+	line->hist_depth++;
 	return (0);
 }
 
