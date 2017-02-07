@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 16:03:41 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:17:12 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ char	*line_editing(void)
 			delete_char(&line, key_pressed, &lst);
 		else if (key_pressed == KEY_STAB)
 			auto_complete(&lst, &line);
+		else if (key_pressed == KEY_HOME)
+			line_begin(&line, &lst);
+		else if (key_pressed == KEY_END)
+			line_end(&line, &lst);
 		else if (key_pressed > 31)
 			insert_char(&line, key_pressed, &lst);
 	}

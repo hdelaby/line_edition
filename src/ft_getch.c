@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 08:48:00 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/06 13:37:43 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:18:21 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ int		ft_getch(void)
 			unique_char();
 			return (KEY_DC);
 		}
+		if (key == 72)
+			return (KEY_HOME);
+		if (key == 70)
+			return (KEY_END);
 	}
 	return (key);
 }
