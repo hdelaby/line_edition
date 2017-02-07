@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 12:25:20 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:03:41 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*line_editing(void)
 	{
 		key_pressed = ft_getch();
 		if (key_pressed == '\n')
-			break;
+			break ;
 		if (key_pressed == KEY_LEFT)
 			arrow_left(&line, &lst);
 		else if (key_pressed == KEY_RIGHT)
@@ -62,14 +62,16 @@ char	*line_editing(void)
 			insert_char(&line, key_pressed, &lst);
 	}
 	ft_putchar('\n');
-	print_dlst(lst);
-	return ("\nDONE");
+	line_begin(&line, &lst);
+	char	*test = ft_dlst_to_nstr(lst, ft_dlstsize(lst) - 1);
+	append_history("sh_history", test);
+	return (test);
 }
 
 int		main(void)
 {
 	term_config();
-	ft_putstr(line_editing());
+	ft_putendl(line_editing());
 	term_basic_config(NULL);
 	return (0);
 }

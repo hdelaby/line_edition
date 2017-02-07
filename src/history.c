@@ -6,13 +6,18 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 12:41:59 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 16:07:23 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
 #include "auto_completion.h"
 #include "ft_printf.h"
+
+/*
+** Feeds the line with the previous entry in the history.
+** Returns 0 on success, 1 otherwise.
+*/
 
 int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
@@ -33,6 +38,11 @@ int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 	return (0);
 }
 
+/*
+** Feeds the line with the next entry in the history.
+** Returns 0 on success, 1 otherwise.
+*/
+
 int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
@@ -42,7 +52,7 @@ int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 	line_begin(line, lst);
 	if (!line->hist_depth)
 	{
-		entry = ft_dlst_to_nstr(*lst, 5);
+		entry = ft_dlst_to_nstr(*lst, ft_dlstsize(*lst) - 1);
 		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1));
 		free(entry);
 	}

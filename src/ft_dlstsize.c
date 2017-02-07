@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auto_completion.h                                  :+:      :+:    :+:   */
+/*   ft_dlstsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/02 11:55:54 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 15:44:00 by hdelaby          ###   ########.fr       */
+/*   Created: 2017/02/07 15:39:40 by hdelaby           #+#    #+#             */
+/*   Updated: 2017/02/07 15:42:26 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AUTO_COMPLETION_H
-# define AUTO_COMPLETION_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include "line_editing.h"
-# include <dirent.h>
+size_t	ft_dlstsize(t_dlist *lst)
+{
+	size_t	i;
 
-int		auto_complete(t_dlist **lst, t_line *line);
-
-#endif
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
+}

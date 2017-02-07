@@ -6,7 +6,7 @@
 /*   By: hdelaby <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 15:07:18 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/31 10:50:08 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 15:44:46 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,9 @@ void			ft_dlstadd(t_dlist **head, t_dlist *new);
 void			ft_dlstaddback(t_dlist **head, t_dlist *new);
 void			ft_dlstremoveif(t_dlist **head, int cmp());
 void			ft_dlstremovenode(t_dlist **head);
-
+char			*ft_dlst_to_nstr(t_dlist *lst, size_t n);
+char			*ft_dlst_to_str(t_dlist *lst);
+size_t			ft_dlstsize(t_dlist *lst);
 /*
 ** TAB
 */
