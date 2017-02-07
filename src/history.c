@@ -6,11 +6,28 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/06 15:25:02 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 10:06:38 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
+
+int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
+{
+	char	*entry;
+
+	if ((*hist)->prev == NULL)
+		return (1);
+	while (!arrow_right(line, lst))
+		continue ;
+	while (!delete_char(line, KEY_BACKSPACE, lst))
+		continue ;
+	*hist = (*hist)->prev;
+	entry = (*hist)->content;
+	while (*entry)
+		insert_char(line, *(entry++), lst);
+	return (0);
+}
 
 int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {

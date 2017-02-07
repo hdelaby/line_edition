@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/06 15:05:26 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/07 10:13:01 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC_NAME = auto_completion.c\
 		   ft_dlst_to_nstr.c\
 		   ft_getch.c\
 		   get_input.c\
-		   test_history.c\
+		   history.c\
 		   main.c\
 		   tc_putc.c\
 		   term_config.c

@@ -5,5 +5,4 @@ line_editing
 obj/
 libft/libft.a
 libft/*.o
-history
-test_history
+sh_history

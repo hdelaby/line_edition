@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/06 15:25:18 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/07 10:07:39 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*line_editing(void)
 			arrow_right(&line, &lst);
 		else if (key_pressed == KEY_UP)
 			old_hist_entry(&lst, &hist, &line);
+		else if (key_pressed == KEY_DOWN)
+			prev_hist_entry(&lst, &hist, &line);
 		else if (key_pressed == KEY_DC || key_pressed == KEY_BACKSPACE)
 			delete_char(&line, key_pressed, &lst);
 		else if (key_pressed == KEY_STAB)
