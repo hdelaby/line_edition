@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/08 09:46:54 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/08 13:36:10 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 SRC_PATH = src
 SRC_NAME = auto_completion.c\
 		   cursor_motion.c\
-		   ft_dlstaddnext.c\
 		   ft_dlst_to_nstr.c\
 		   ft_dlst_to_str.c\
 		   ft_dlstsize.c\
@@ -39,7 +38,8 @@ SRC_NAME = auto_completion.c\
 		   history.c\
 		   main.c\
 		   tc_putc.c\
-		   term_config.c
+		   term_config.c\
+		   word_navigation.c
 
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 09:48:00 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 13:53:36 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,17 @@ char	*line_editing(void)
 			cursor_to_home(&line, &lst);
 		else if (key_pressed == KEY_END)
 			cursor_to_end(&line, &lst);
+		else if (key_pressed == '>')
+			goto_next_word(&line, &lst);
+		else if (key_pressed == '<')
+			goto_prev_word(&line, &lst);
 		else if (key_pressed > 31)
 			insert_char(&line, key_pressed, &lst);
 	}
-	ft_putchar('\n');
 	cursor_to_home(&line, &lst);
 	char	*test = ft_dlst_to_nstr(lst, ft_dlstsize(lst) - 1);
+	cursor_to_end(&line, &lst);
+	ft_putchar('\n');
 	append_history("sh_history", test);
 	return (test);
 }

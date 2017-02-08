@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 09:18:34 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 09:56:57 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int		cursor_to_right(t_line *line, t_dlist **lst)
 	line->cursor++;
 	if ((*lst)->next)
 		*lst = (*lst)->next;
-	tputs(tgetstr("nd", NULL), 1, &tc_putc);
+	if (line->cursor && line->cursor % line->winsz.width)
+		tputs(tgetstr("nd", NULL), 1, &tc_putc);
+	else if (line->cursor)
+		tputs(tgetstr("docr", NULL), 1, &tc_putc);
 	return (0);
 }
