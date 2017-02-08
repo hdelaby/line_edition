@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 13:53:20 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:14:40 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ int				insert_char(t_line *line, int key, t_dlist **lst);
 */
 
 int				ft_getwinsz(t_winsz *winsz);
+
+/*
+** word_navigation.c
+*/
+
+int				goto_next_line(t_line *line, t_dlist **lst);
+int				goto_prev_line(t_line *line, t_dlist **lst);
 
 /*
 ** tc_putc.c

@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 09:56:57 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:36:19 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ int		cursor_to_left(t_line *line, t_dlist **lst)
 	line->cursor--;
 	if ((*lst)->prev)
 		*lst = (*lst)->prev;
-	tputs(tgetstr("le", NULL), 1, &tc_putc);
+	if (line->cursor + 1 % line->winsz.width)
+		tputs(tgetstr("le", NULL), 1, &tc_putc);
+	else
+	{
+		tputs(tgetstr("up", NULL), 1, &tc_putc);
+		tputs(tgoto("ch", 0, line->winsz.width), 1, &tc_putc);
+	}
 	return (0);
 }
 

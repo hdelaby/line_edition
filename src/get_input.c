@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 12:05:34 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 17:43:59 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,20 @@ int		insert_char(t_line *line, int key, t_dlist **lst)
 	return (0);
 }
 
+/*
+** Need to work on deleting on multiple line! Issue when using "dc" on the last
+** column of the line!
+*/
+
 int		delete_char(t_line *line, int key, t_dlist **lst)
 {
 	if (key == KEY_BACKSPACE)
 		if (cursor_to_left(line, lst))
 			return (1);
-	if (key == KEY_DC && !ft_strcmp((*lst)->content, "\n"))
+	if (key == KEY_DC && !ft_strcmp((*lst)->content, "\t"))
 		return (1);
-	tputs(tgetstr("dc", NULL), 1, &tc_putc);
+	ft_putchar(32);
+	tputs(tgetstr("le", NULL), 1, &tc_putc);
 	ft_dlstremovenode(lst);
 	line->length--;
 	return (0);

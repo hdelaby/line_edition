@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/08 13:36:10 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/08 16:10:07 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NAME = auto_completion.c\
 		   ft_getwinsz.c\
 		   get_input.c\
 		   history.c\
+		   line_navigation.c\
 		   main.c\
 		   tc_putc.c\
 		   term_config.c\
