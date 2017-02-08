@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/01 15:33:46 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 09:12:31 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		insert_char(t_line *line, int key, t_dlist **lst)
 int		delete_char(t_line *line, int key, t_dlist **lst)
 {
 	if (key == KEY_BACKSPACE)
-		if (arrow_left(line, lst))
+		if (cursor_to_left(line, lst))
 			return (1);
 	if (key == KEY_DC && !ft_strcmp((*lst)->content, "\n"))
 		return (1);

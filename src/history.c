@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 16:07:23 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 09:13:11 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 	if (!(*hist) || !(*hist)->prev)
 		return (1);
 	line->hist_depth--;
-	line_end(line, lst);
+	cursor_to_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
 		continue;
 	*hist = (*hist)->prev;
@@ -49,14 +49,14 @@ int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 
 	if (!(*hist) || !(*hist)->next)
 		return (1);
-	line_begin(line, lst);
+	cursor_to_home(line, lst);
 	if (!line->hist_depth)
 	{
 		entry = ft_dlst_to_nstr(*lst, ft_dlstsize(*lst) - 1);
 		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1));
 		free(entry);
 	}
-	line_end(line, lst);
+	cursor_to_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
 		continue ;
 	*hist = (*hist)->next;

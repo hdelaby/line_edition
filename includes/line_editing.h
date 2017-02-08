@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 12:02:21 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 09:46:41 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
+typedef struct	s_winsz
+{
+	size_t	height;
+	size_t	width;
+}				t_winsz;
+
 typedef struct	s_line
 {
 	size_t	cursor;
 	size_t	length;
 	size_t	hist_depth;
+	t_winsz	winsz;
 }				t_line;
 
 char			*line_editing(void);
@@ -33,10 +40,10 @@ char			*line_editing(void);
 ** cursor_motion.c
 */
 
-int				arrow_left(t_line *line, t_dlist **lst);
-int				arrow_right(t_line *line, t_dlist **lst);
-int				line_end(t_line *line, t_dlist **lst);
-int				line_begin(t_line *line, t_dlist **lst);
+int				cursor_to_left(t_line *line, t_dlist **lst);
+int				cursor_to_right(t_line *line, t_dlist **lst);
+int				cursor_to_end(t_line *line, t_dlist **lst);
+int				cursor_to_home(t_line *line, t_dlist **lst);
 
 /*
 ** ft_getch.c
@@ -56,6 +63,12 @@ void			ft_dlstaddnext(t_dlist **head, t_dlist *new);
 
 int				delete_char(t_line *line, int key, t_dlist **lst);
 int				insert_char(t_line *line, int key, t_dlist **lst);
+
+/*
+** ft_getwinsz.c
+*/
+
+int				ft_getwinsz(t_winsz *winsz);
 
 /*
 ** tc_putc.c

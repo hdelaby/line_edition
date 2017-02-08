@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/07 12:01:42 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/08 09:18:34 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include "term_config.h"
 #include "ft_printf.h"
 
-int		line_end(t_line *line, t_dlist **lst)
+int		cursor_to_end(t_line *line, t_dlist **lst)
 {
-	while (!arrow_right(line, lst))
+	while (!cursor_to_right(line, lst))
 		continue ;
 	return (0);
 }
 
-int		line_begin(t_line *line, t_dlist **lst)
+int		cursor_to_home(t_line *line, t_dlist **lst)
 {
-	while (!arrow_left(line, lst))
+	while (!cursor_to_left(line, lst))
 		continue ;
 	return (0);
 }
 
-int		arrow_left(t_line *line, t_dlist **lst)
+int		cursor_to_left(t_line *line, t_dlist **lst)
 {
 	if (line->cursor == 0)
 		return (1);
@@ -39,7 +39,7 @@ int		arrow_left(t_line *line, t_dlist **lst)
 	return (0);
 }
 
-int		arrow_right(t_line *line, t_dlist **lst)
+int		cursor_to_right(t_line *line, t_dlist **lst)
 {
 	if (line->cursor == line->length)
 		return (1);
