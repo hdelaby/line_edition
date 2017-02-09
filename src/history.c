@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 09:13:11 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/09 15:01:25 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,33 @@
 #include "auto_completion.h"
 #include "ft_printf.h"
 
+static void	del_line(t_dlist **lst, t_line *line)
+{
+	cursor_to_home(line, lst);
+	while (line->length)
+	{
+		ft_dlstremovenode(lst);
+		line->length--;
+	}
+	tputs(tgetstr("cd", NULL), 1, &tc_putc);
+}
+
 /*
 ** Feeds the line with the previous entry in the history.
 ** Returns 0 on success, 1 otherwise.
 */
 
-int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
+int			prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
 
 	if (!(*hist) || !(*hist)->prev)
 		return (1);
 	line->hist_depth--;
-	cursor_to_end(line, lst);
+	del_line(lst, line);
+	/*cursor_to_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
-		continue;
+		continue;*/
 	*hist = (*hist)->prev;
 	entry = (*hist)->content;
 	while (*entry)
@@ -43,7 +55,7 @@ int		prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 ** Returns 0 on success, 1 otherwise.
 */
 
-int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
+int			old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
 
@@ -56,9 +68,10 @@ int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1));
 		free(entry);
 	}
-	cursor_to_end(line, lst);
+	del_line(lst, line);
+	/*cursor_to_end(line, lst);
 	while (!delete_char(line, KEY_BACKSPACE, lst))
-		continue ;
+		continue ;*/
 	*hist = (*hist)->next;
 	entry = (*hist)->content;
 	while (*entry)
@@ -72,11 +85,11 @@ int		old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 ** Returns 0 on success, 1 otherwise.
 */
 
-int		append_history(char *path, char *entry)
+int			append_history(char *path, char *entry)
 {
 	int		fd;
 
-	fd = open(path, O_WRONLY | O_APPEND | O_CREAT);
+	fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
 		ft_putendl_fd("Could not open history", 2);
@@ -102,10 +115,7 @@ t_dlist	*retrieve_history(char *path)
 	hist = NULL;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_putendl_fd("History could not be retrieved", 2);
 		return (NULL);
-	}
 	while (get_next_line(fd, &line))
 	{
 		ft_dlstadd(&hist, ft_dlstnew(line, ft_strlen(line) + 1));

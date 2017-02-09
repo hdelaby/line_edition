@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 16:17:28 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/09 15:19:14 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*line_editing(void)
 	lst = ft_dlstnew(&key_pressed, 2);
 	ft_bzero(&line, sizeof(t_line));
 	hist = retrieve_history("sh_history");
+	ft_putstr("PROMPT $> ");
 	while (42)
 	{
 		ft_getwinsz(&(line.winsz));
@@ -75,7 +76,7 @@ char	*line_editing(void)
 			insert_char(&line, key_pressed, &lst);
 	}
 	cursor_to_home(&line, &lst);
-	char	*test = ft_dlst_to_nstr(lst, ft_dlstsize(lst) - 1);
+	char	*test = ft_dlst_to_nstr(lst, line.length);
 	cursor_to_end(&line, &lst);
 	ft_putchar('\n');
 	append_history("sh_history", test);
