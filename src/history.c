@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/09 15:01:25 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/10 10:09:15 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
 {
 	char	*entry;
 
-	if (!(*hist) || !(*hist)->next)
+	if (!(*hist) || !(*hist)->next) // PROBLEM WHEN ONLY 1 ENTRY
 		return (1);
 	cursor_to_home(line, lst);
 	if (!line->hist_depth)
