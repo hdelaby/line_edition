@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/10 09:51:02 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/10 12:19:30 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ char	*line_editing(void)
 
 int		main(void)
 {
-	term_config();
+	/*term_config();
 	ft_putendl(line_editing());
-	term_basic_config(NULL);
+	term_basic_config(NULL);*/
+	char str[32] = "HELLO TOI";
+	ft_memmove(str + 5, str + 5 + 1, 32 - 5 - 1 * sizeof(char));
+	ft_putstr(str);
 	return (0);
 }
