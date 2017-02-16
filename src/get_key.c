@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:47:05 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:09:43 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:17:14 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ static int	match_key(char *key_str)
 	return (key_str[0]);
 }
 
+/*
+** Small particularity of this function lies in the fact that we first read 1
+** character. If this value equals '\x1b' we read 3 other chars.
+** This behaviour makes copied text works.
+*/
+
 int			get_key(void)
 {
 	char	*key_str;
@@ -54,7 +60,9 @@ int			get_key(void)
 	key_str = ft_strnew(MAX_KEY_LEN);
 	if (!key_str)
 		return (-1);
-	read(0, key_str, MAX_KEY_LEN);
+	read(0, key_str, 1);
+	if (*key_str == '\x1b')
+		read(0, key_str + 1, MAX_KEY_LEN - 1);
 	key_pressed = match_key(key_str);
 	free(key_str);
 	return (key_pressed);
