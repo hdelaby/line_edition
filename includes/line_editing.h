@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 13:54:28 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:41:26 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct	s_line
 	char	cmd[MAX_CMD_LEN];
 }				t_line;
 
+typedef struct	s_keymove
+{
+	int		key;
+	void	(*p)(t_line *line);
+}				t_keymove;
+
 char			*line_editing(void);
 
 /*
@@ -47,20 +53,14 @@ char			*line_editing(void);
 
 void			cursor_to_left(t_line *line);
 void			cursor_to_right(t_line *line);
-int				cursor_to_end(t_line *line);
-int				cursor_to_home(t_line *line);
+void			cursor_to_end(t_line *line);
+void			cursor_to_home(t_line *line);
 
 /*
 ** ft_getch.c
 */
 
 int				ft_getch(void);
-
-/*
-** ft_dlstaddnext.c
-*/
-
-void			ft_dlstaddnext(t_dlist **head, t_dlist *new);
 
 /*
 ** get_input.c

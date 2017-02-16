@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:47:05 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:17:14 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:36:04 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 ** curses.h
 */
 
-static int	match_key(char *key_str)
+static int	match_key(char *key_str, int i)
 {
-	int							i;
 	static struct s_keymatch	key_couple[10] = {
 		{KEY_CODE_UP, KEY_UP},
 		{KEY_CODE_DO, KEY_DOWN},
@@ -39,7 +38,6 @@ static int	match_key(char *key_str)
 		{KEY_CODE_END, KEY_END}
 	};
 
-	i = 0;
 	while (i < 10)
 		if (!ft_memcmp(key_couple[i++].key_code, key_str, MAX_KEY_LEN))
 			return (key_couple[i - 1].key_ret);
@@ -63,7 +61,7 @@ int			get_key(void)
 	read(0, key_str, 1);
 	if (*key_str == '\x1b')
 		read(0, key_str + 1, MAX_KEY_LEN - 1);
-	key_pressed = match_key(key_str);
+	key_pressed = match_key(key_str, 0);
 	free(key_str);
 	return (key_pressed);
 }

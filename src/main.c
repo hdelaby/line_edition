@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:02:43 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:40:46 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ void	get_cursor_start_pos(t_line *line)
 	line->start.col = ft_atoi(answer + i + 1);
 }
 
+void	recognise_key(int key_pressed, t_line *line)
+{
+	int			i;
+	t_keymove	keymove[4] = {
+		{KEY_RIGHT, &cursor_to_right},
+		{KEY_LEFT, &cursor_to_left},
+		{KEY_HOME, &cursor_to_home},
+		{KEY_END, &cursor_to_end}
+	};
+	
+	i = 0;
+	while (i < 4)
+		if (key_pressed == keymove[i++].key)
+			keymove[i - 1].p(line);
+}
+
 char	*line_editing(void)
 {
 	int		key_pressed;
@@ -51,10 +67,7 @@ char	*line_editing(void)
 	{
 		ft_getwinsz(&(line.winsz));
 		key_pressed = get_key();
-		if (key_pressed == KEY_RIGHT)
-			cursor_to_right(&line);
-		if (key_pressed == KEY_LEFT)
-			cursor_to_left(&line);
+		recognise_key(key_pressed, &line);
 		if (key_pressed > 31 && key_pressed < 128)
 			insert_char(&line, key_pressed);
 		if (key_pressed == KEY_ENTER)

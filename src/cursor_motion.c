@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 13:58:47 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:39:20 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ void	set_curpos(t_line *line)
 	tputs(tgoto(tgetstr("cm", NULL), xpos - 1, ypos - 1), 0, &tc_putc);
 }
 
-/* int		cursor_to_end(t_line *line, t_dlist **lst) */
-/* { */
-/* 	while (!cursor_to_right(line, lst)) */
-/* 		continue ; */
-/* 	return (0); */
-/* } */
+void	cursor_to_end(t_line *line)
+{
+	line->cursor = line->length;
+	set_curpos(line);
+}
 
-/* int		cursor_to_home(t_line *line, t_dlist **lst) */
-/* { */
-/* 	while (!cursor_to_left(line, lst)) */
-/* 		continue ; */
-/* 	return (0); */
+void	cursor_to_home(t_line *line)
+{
+	line->cursor = 0;
+	set_curpos(line);
+}
 
 void	cursor_to_left(t_line *line)
 {
