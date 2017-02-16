@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 10:01:51 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/01/31 10:20:46 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 10:03:11 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <term.h>
 # include <curses.h>
 
-int		term_basic_config(struct termios *old_term);
-int		term_config(void);
+void	raw_term_mode(void);
+void	default_term_mode(void);
 
 #endif

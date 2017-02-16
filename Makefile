@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/08 16:10:07 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/16 11:47:18 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,24 +23,17 @@ INC_PATH= includes
 INC_FILES= line_editing.h\
 		   term_config.h\
 		   auto_completion.h\
-		   history.h
+		   history.h\
+		   keys.h
 DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
-SRC_NAME = auto_completion.c\
-		   cursor_motion.c\
-		   ft_dlst_to_nstr.c\
-		   ft_dlst_to_str.c\
-		   ft_dlstsize.c\
-		   ft_getch.c\
+SRC_NAME = cursor_motion.c\
+		   get_key.c\
 		   ft_getwinsz.c\
-		   get_input.c\
-		   history.c\
-		   line_navigation.c\
-		   main.c\
 		   tc_putc.c\
-		   term_config.c\
-		   word_navigation.c
+		   main.c\
+		   set_term_mode.c
 
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
