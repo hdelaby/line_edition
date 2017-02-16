@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 10:45:14 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 13:54:28 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
+# define MAX_CMD_LEN 4096
+
 typedef struct	s_winsz
 {
-	size_t	height;
-	size_t	width;
+	size_t	row;
+	size_t	col;
 }				t_winsz;
 
 typedef struct	s_line
@@ -31,7 +33,10 @@ typedef struct	s_line
 	size_t	cursor;
 	size_t	length;
 	size_t	hist_depth;
+	size_t	hist_size;
 	t_winsz	winsz;
+	t_winsz start;
+	char	cmd[MAX_CMD_LEN];
 }				t_line;
 
 char			*line_editing(void);
@@ -40,10 +45,10 @@ char			*line_editing(void);
 ** cursor_motion.c
 */
 
-int				cursor_to_left(t_line *line, t_dlist **lst);
-int				cursor_to_right(t_line *line, t_dlist **lst);
-int				cursor_to_end(t_line *line, t_dlist **lst);
-int				cursor_to_home(t_line *line, t_dlist **lst);
+void			cursor_to_left(t_line *line);
+void			cursor_to_right(t_line *line);
+int				cursor_to_end(t_line *line);
+int				cursor_to_home(t_line *line);
 
 /*
 ** ft_getch.c
@@ -61,8 +66,8 @@ void			ft_dlstaddnext(t_dlist **head, t_dlist *new);
 ** get_input.c
 */
 
-int				delete_char(t_line *line, int key, t_dlist **lst);
-int				insert_char(t_line *line, int key, t_dlist **lst);
+int				delete_char(t_line *line, int key);
+int				insert_char(t_line *line, int key);
 
 /*
 ** ft_getwinsz.c

@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 09:44:39 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/08 09:47:08 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 13:45:29 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_getwinsz(t_winsz *winsz)
 
 	if (ioctl(0, TIOCGWINSZ, &w))
 		return (1);
-	winsz->width = w.ws_col;
-	winsz->height = w.ws_row;
+	winsz->col = w.ws_col;
+	winsz->row = w.ws_row;
 	return (0);
 }

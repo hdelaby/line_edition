@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/16 11:47:18 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/16 12:27:12 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,13 @@ INC_FILES= line_editing.h\
 DEPS = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
 SRC_PATH = src
-SRC_NAME = cursor_motion.c\
-		   get_key.c\
+SRC_NAME = get_key.c\
 		   ft_getwinsz.c\
 		   tc_putc.c\
 		   main.c\
-		   set_term_mode.c
+		   set_term_mode.c\
+		   get_input.c\
+		   cursor_motion.c
 
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
