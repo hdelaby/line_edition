@@ -6,79 +6,48 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/10 10:09:15 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 18:07:13 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
-#include "auto_completion.h"
-#include "ft_printf.h"
 
-static void	del_line(t_dlist **lst, t_line *line)
-{
-	cursor_to_home(line, lst);
-	while (line->length)
-	{
-		ft_dlstremovenode(lst);
-		line->length--;
-	}
-	tputs(tgetstr("cd", NULL), 1, &tc_putc);
-}
-
-/*
-** Feeds the line with the previous entry in the history.
-** Returns 0 on success, 1 otherwise.
-*/
-
-int			prev_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
+void	prev_hist_entry(t_line *line)
 {
 	char	*entry;
 
-	if (!(*hist) || !(*hist)->prev)
-		return (1);
+	if (!line->hist_depth)
+		return ;
 	line->hist_depth--;
-	del_line(lst, line);
-	/*cursor_to_end(line, lst);
-	while (!delete_char(line, KEY_BACKSPACE, lst))
-		continue;*/
 	*hist = (*hist)->prev;
 	entry = (*hist)->content;
-	while (*entry)
-		insert_char(line, *(entry++), lst);
 	if (!line->hist_depth)
 		ft_dlstremovenode(hist);
 	return (0);
 }
 
-/*
-** Feeds the line with the next entry in the history.
-** Returns 0 on success, 1 otherwise.
-*/
 
-int			old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line)
-{
-	char	*entry;
+/* int			old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line) */
+/* { */
+/* 	char	*entry; */
 
-	if (!(*hist) || !(*hist)->next) // PROBLEM WHEN ONLY 1 ENTRY
-		return (1);
-	cursor_to_home(line, lst);
-	if (!line->hist_depth)
-	{
-		entry = ft_dlst_to_nstr(*lst, ft_dlstsize(*lst) - 1);
-		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1));
-		free(entry);
-	}
-	del_line(lst, line);
-	/*cursor_to_end(line, lst);
-	while (!delete_char(line, KEY_BACKSPACE, lst))
-		continue ;*/
-	*hist = (*hist)->next;
-	entry = (*hist)->content;
-	while (*entry)
-		insert_char(line, *(entry++), lst);
-	line->hist_depth++;
-	return (0);
-}
+/* 	if (!(*hist) || !(*hist)->next) // PROBLEM WHEN ONLY 1 ENTRY */
+/* 		return (1); */
+/* 	cursor_to_home(line, lst); */
+/* 	if (!line->hist_depth) */
+/* 	{ */
+/* 		entry = ft_dlst_to_nstr(*lst, ft_dlstsize(*lst) - 1); */
+/* 		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1)); */
+/* 		free(entry); */
+/* 	} */
+/* 	del_line(lst, line); */
+/* 	*hist = (*hist)->next; */
+/* 	entry = (*hist)->content; */
+/* 	while (*entry) */
+/* 		insert_char(line, *(entry++), lst); */
+/* 	line->hist_depth++; */
+/* 	return (0); */
+/* } */
 
 /*
 ** Opens the file pointed by path and appends the new history entry.
@@ -111,6 +80,7 @@ t_dlist	*retrieve_history(char *path)
 	int		fd;
 	t_dlist	*hist;
 	char	*line;
+	size_t	len;
 
 	hist = NULL;
 	fd = open(path, O_RDONLY);
@@ -118,7 +88,9 @@ t_dlist	*retrieve_history(char *path)
 		return (NULL);
 	while (get_next_line(fd, &line))
 	{
-		ft_dlstadd(&hist, ft_dlstnew(line, ft_strlen(line) + 1));
+		len = ft_strlen(line);
+		if (len < MAX_CMD_LEN)
+			ft_dlstadd(&hist, ft_dlstnew(line, len + 1));
 		free(line);
 	}
 	close(fd);

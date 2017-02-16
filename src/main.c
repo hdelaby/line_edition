@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 16:33:03 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 17:32:01 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ char	*line_editing(void)
 
 	raw_term_mode();
 	ft_bzero(&line, sizeof(line));
+	line.hist = retrieve_history("sh_history");
 	ft_putstr_fd("PROMPT > ", 0);
 	get_cursor_start_pos(&line);
 	ft_getwinsz(&(line.winsz));
 	while (42)
 	{
 		if (line.start.row + line.cursor / line.winsz.col > line.winsz.row)
-			line.start.row--; /* When window scrolls */
+			line.start.row--;
 		key_pressed = get_key();
 		recognise_key(key_pressed, &line);
 		if (key_pressed > 31 && key_pressed < 127)
@@ -84,6 +85,7 @@ char	*line_editing(void)
 	cursor_to_end(&line);
 	default_term_mode();
 	ft_putchar('\n');
+	append_history("sh_history", line.cmd);
 	return (ft_strdup(line.cmd));
 }
 

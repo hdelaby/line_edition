@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 15:50:36 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 17:22:24 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_winsz
 
 typedef struct	s_line
 {
+	t_dlist	*hist;
 	size_t	cursor;
 	size_t	length;
 	size_t	hist_depth;
