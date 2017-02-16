@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:47:05 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 11:51:34 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 11:52:50 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 static int	match_key(char *key_str)
 {
-	int				i;
-	static struct s_keymatch key_couple[10] = {
+	int							i;
+	static struct s_keymatch	key_couple[10] = {
 		{KEY_CODE_UP, KEY_UP},
 		{KEY_CODE_DO, KEY_DOWN},
 		{KEY_CODE_RI, KEY_RIGHT},
