@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 12:05:12 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 16:35:01 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include "ft_printf.h"
 
-int		insert_char(t_line *line, int key)
+void	insert_char(t_line *line, int key)
 {
 	if (line->length + 1 >= MAX_CMD_LEN)
-		return (1);
+		return ;
 	ft_memmove(line->cmd + line->cursor + 1, line->cmd + line->cursor,
 			MAX_CMD_LEN - line->cursor - 1);
 	line->cmd[line->cursor] = key;
@@ -27,26 +27,20 @@ int		insert_char(t_line *line, int key)
 	tputs(tgetstr("im", NULL), 1, &tc_putc);
 	ft_putchar_fd(key, 0);
 	tputs(tgetstr("ei", NULL), 1, &tc_putc);
-	return (0);
 }
 
-/* int		delete_char(t_line *line, int key, t_dlist **lst) */
-/* { */
-/* 	size_t	cur_pos; */
-
-/* 	if (key == KEY_BACKSPACE) */
-/* 		if (cursor_to_left(line, lst)) */
-/* 			return (1); */
-/* 	if (key == KEY_DC && !ft_strcmp((*lst)->content, "\t")) */
-/* 		return (1); */
-/* 	ft_dlstremovenode(lst); */
-/* 	line->length--; */
-/* 	tputs(tgetstr("vi", NULL), 1, &tc_putc); */
-/* 	cur_pos = line->cursor; */
-/* 	tputs(tgetstr("cd", NULL), 1, &tc_putc); */
-/* 	refresh_display(line, lst); */
-/* 	while (line->cursor > cur_pos) */
-/* 		cursor_to_left(line, lst); */
-/* 	tputs(tgetstr("ve", NULL), 1, &tc_putc); */
-/* 	return (0); */
-/* } */
+void	delete_char(t_line *line, int key)
+{
+	if (key == 127 && !line->cursor)
+		return ;
+	if (key == 127)
+		cursor_to_left(line);
+	if (line->cursor == line->length)
+		return ;
+	ft_memmove(line->cmd + line->cursor, line->cmd + line->cursor + 1,
+			MAX_CMD_LEN - line->cursor - 1);
+	line->length--;
+	tputs(tgetstr("cd", NULL), 0, &tc_putc);
+	ft_putstr_fd(line->cmd + line->cursor, 0);
+	set_curpos(line);
+}

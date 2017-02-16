@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:40:46 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 16:33:03 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,19 @@ void	get_cursor_start_pos(t_line *line)
 void	recognise_key(int key_pressed, t_line *line)
 {
 	int			i;
-	t_keymove	keymove[4] = {
+	t_keymove	keymove[8] = {
 		{KEY_RIGHT, &cursor_to_right},
 		{KEY_LEFT, &cursor_to_left},
 		{KEY_HOME, &cursor_to_home},
-		{KEY_END, &cursor_to_end}
+		{KEY_END, &cursor_to_end},
+		{KEY_SRIGHT, &goto_next_word},
+		{KEY_SLEFT, &goto_prev_word},
+		{KEY_SPREVIOUS, &goto_prev_line},
+		{KEY_SNEXT, &goto_next_line}
 	};
 	
 	i = 0;
-	while (i < 4)
+	while (i < 8)
 		if (key_pressed == keymove[i++].key)
 			keymove[i - 1].p(line);
 }
@@ -63,17 +67,23 @@ char	*line_editing(void)
 	ft_bzero(&line, sizeof(line));
 	ft_putstr_fd("PROMPT > ", 0);
 	get_cursor_start_pos(&line);
+	ft_getwinsz(&(line.winsz));
 	while (42)
 	{
-		ft_getwinsz(&(line.winsz));
+		if (line.start.row + line.cursor / line.winsz.col > line.winsz.row)
+			line.start.row--; /* When window scrolls */
 		key_pressed = get_key();
 		recognise_key(key_pressed, &line);
-		if (key_pressed > 31 && key_pressed < 128)
+		if (key_pressed > 31 && key_pressed < 127)
 			insert_char(&line, key_pressed);
-		if (key_pressed == KEY_ENTER)
+		if (key_pressed == KEY_DC || key_pressed == 127)
+			delete_char(&line, key_pressed);
+		if (key_pressed == '\n')
 			break;
 	}
+	cursor_to_end(&line);
 	default_term_mode();
+	ft_putchar('\n');
 	return (ft_strdup(line.cmd));
 }
 

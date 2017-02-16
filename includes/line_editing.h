@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:41:26 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:50:36 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,20 @@ typedef struct	s_keymove
 char			*line_editing(void);
 
 /*
+** content_navigation.c
+*/
+
+void			goto_next_word(t_line *line);
+void			goto_prev_word(t_line *line);
+void			goto_next_line(t_line *line);
+void			goto_prev_line(t_line *line);
+
+
+/*
 ** cursor_motion.c
 */
 
+void			set_curpos(t_line *line);
 void			cursor_to_left(t_line *line);
 void			cursor_to_right(t_line *line);
 void			cursor_to_end(t_line *line);
@@ -66,8 +77,8 @@ int				ft_getch(void);
 ** get_input.c
 */
 
-int				delete_char(t_line *line, int key);
-int				insert_char(t_line *line, int key);
+void			delete_char(t_line *line, int key);
+void			insert_char(t_line *line, int key);
 
 /*
 ** ft_getwinsz.c
@@ -76,23 +87,9 @@ int				insert_char(t_line *line, int key);
 int				ft_getwinsz(t_winsz *winsz);
 
 /*
-** word_navigation.c
-*/
-
-int				goto_next_line(t_line *line, t_dlist **lst);
-int				goto_prev_line(t_line *line, t_dlist **lst);
-
-/*
 ** tc_putc.c
 */
 
 int				tc_putc(int c);
-
-/*
-** word_navigation.c
-*/
-
-int				goto_next_word(t_line *line, t_dlist **lst);
-int				goto_prev_word(t_line *line, t_dlist **lst);
 
 #endif

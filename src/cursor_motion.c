@@ -6,13 +6,18 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 09:27:03 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 14:39:20 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/16 14:44:06 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_editing.h"
 #include "term_config.h"
-#include "ft_printf.h"
+
+/*
+** This set of fonctions ensures the good behaviour of cursor motion. That
+** includes L/R arrows and home/end keys. set_curpos positions the cursor
+** after the value of cursor has been updated.
+*/
 
 void	set_curpos(t_line *line)
 {
