@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 10:18:28 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 11:07:27 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:18:20 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "fcntl.h"
-# include "line_editing.h"
+# include "line_edition.h"
 
 # define HISTORY_PATH "sh_history"
 

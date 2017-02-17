@@ -6,12 +6,12 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 09:44:39 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 13:45:29 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:17:24 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "line_editing.h"
+#include "line_edition.h"
 #include <sys/ioctl.h>
 
 /*

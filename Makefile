@@ -6,11 +6,11 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/17 14:12:20 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/17 15:16:38 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= line_editing
+NAME= line_edition
 CC= gcc
 CFLAGS= -Wall -Wextra -Werror
 
@@ -20,7 +20,7 @@ LIBFLAGS= -Llibft -lft -ltermcap
 
 INC= -I./includes -I./libft/includes
 INC_PATH= includes
-INC_FILES= line_editing.h\
+INC_FILES= line_edition.h\
 		   term_config.h\
 		   auto_completion.h\
 		   history.h\

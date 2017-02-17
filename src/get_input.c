@@ -6,14 +6,12 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 10:19:38 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 16:35:01 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:17:11 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_editing.h"
+#include "line_edition.h"
 #include "term_config.h"
-
-#include "ft_printf.h"
 
 void	insert_char(t_line *line, int key)
 {

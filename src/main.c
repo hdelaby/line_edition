@@ -6,12 +6,11 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 14:21:28 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:18:06 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_editing.h"
-#include "auto_completion.h"
+#include "line_edition.h"
 #include "ft_printf.h"
 #include "history.h"
 #include "keys.h"

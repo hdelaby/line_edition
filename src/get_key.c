@@ -6,11 +6,9 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:47:05 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 09:52:01 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:17:47 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf.h"
 
 #include <sys/types.h>
 #include <sys/uio.h>

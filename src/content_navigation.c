@@ -6,11 +6,11 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 15:13:08 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 15:29:05 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:17:32 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_editing.h"
+#include "line_edition.h"
 
 void	goto_next_word(t_line *line)
 {

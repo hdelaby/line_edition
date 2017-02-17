@@ -1,6 +1,6 @@
 */*.swp
 */*/*.swp
-line_editing
+line_edition
 */*.DS_Store
 obj/
 libft/libft.a
