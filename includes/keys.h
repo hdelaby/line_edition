@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:19:28 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 11:19:05 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:35:34 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define KEY_CODE_SRI "\x1b\x1b\x5b\x43"
 # define KEY_CODE_SLE "\x1b\x1b\x5b\x44"
 
+# define KEY_CTRLL 12
+
 struct	s_keymatch
 {
 	char	*key_code;
@@ -39,6 +41,5 @@ struct	s_keymatch
 int		get_key(void);
 
 /* KEY_CODE_CTRLD 4 */
-/* KEY_CODE_CTRLL c */
 
 #endif

@@ -11,6 +11,7 @@ Line edition tool using C termcap library
 - `[ALT + LEFT]` Move cursor one word backward
 - `[ALT + UP]` Move cursor one line above
 - `[ALT + DOWN]` Move cursor one line below
+- `[CTRL + L]` Clear the screen
 
 ## todo
 

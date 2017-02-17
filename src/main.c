@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:51:53 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 15:18:06 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 15:58:22 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ void	input_loop(t_line *line)
 			insert_char(line, key_pressed);
 		if (key_pressed == KEY_DC || key_pressed == 127)
 			delete_char(line, key_pressed);
+		if (key_pressed == KEY_CTRLL)
+		{
+			tputs(tgoto(tgetstr("SF", NULL), 0, line->start.row - 1)
+					, 1, &tc_putc);
+			line->start.row = 1;
+			set_curpos(line);
+		}
 		if (key_pressed == '\n')
 			break ;
 	}
@@ -117,5 +124,4 @@ int		main(void)
 	ft_putstr_fd("PROMPT > ", 0);
 	str = line_editing();
 	ft_putendl(str);
-	sleep(5);
 }
