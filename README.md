@@ -1,4 +1,4 @@
-# line_editing
+# line_edition
 Line edition tool using C termcap library
 
 ## commands
