@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 17:22:24 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 11:18:09 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void			goto_next_word(t_line *line);
 void			goto_prev_word(t_line *line);
 void			goto_next_line(t_line *line);
 void			goto_prev_line(t_line *line);
-
 
 /*
 ** cursor_motion.c

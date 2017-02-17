@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:19:28 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 15:25:48 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 11:19:05 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 struct	s_keymatch
 {
 	char	*key_code;
-	int	 	key_ret;
+	int		key_ret;
 };
 
 int		get_key(void);
