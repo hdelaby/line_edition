@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 11:27:47 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 14:11:57 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ struct	s_keyhist
 };
 
 char			*line_editing(void);
+void			ft_dlstdelstr(t_dlist **lst);
 
 /*
 ** content_navigation.c
@@ -80,17 +81,17 @@ void			cursor_to_home(t_line *line);
 int				ft_getch(void);
 
 /*
+** ft_getwinsz.c
+*/
+
+int				ft_getwinsz(t_winsz *winsz);
+
+/*
 ** get_input.c
 */
 
 void			delete_char(t_line *line, int key);
 void			insert_char(t_line *line, int key);
-
-/*
-** ft_getwinsz.c
-*/
-
-int				ft_getwinsz(t_winsz *winsz);
 
 /*
 ** tc_putc.c

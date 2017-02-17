@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 11:13:24 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 13:54:23 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void		append_history(char *entry)
 {
 	int		fd;
 
+	if (!(*entry))
+		return ;
 	fd = open(HISTORY_PATH, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{

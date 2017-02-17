@@ -6,7 +6,7 @@
 #    By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/05 13:43:29 by hdelaby           #+#    #+#              #
-#    Updated: 2017/02/17 10:34:42 by hdelaby          ###   ########.fr        #
+#    Updated: 2017/02/17 14:12:20 by hdelaby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ SRC_NAME = get_key.c\
 		   cursor_motion.c\
 		   content_navigation.c\
 		   history.c\
-		   ft_dlstsize.c
+		   ft_dlstsize.c\
+		   ft_dlstdelstr.c
 
 OBJ_PATH = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
