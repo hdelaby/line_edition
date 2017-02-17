@@ -6,76 +6,69 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 15:12:46 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 18:07:13 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 11:13:24 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
 
-void	prev_hist_entry(t_line *line)
-{
-	char	*entry;
+/*
+** This lot of functions handles the history functionaly of our line edition.
+** We first retrieve the history defined in HISTORY_PATH, and store its content
+** in a doubly-linked lists. This allows easy navigation whenever we want to
+** retrieve the content.
+** The functions are self_explanatory and quite simple otherwise.
+*/
 
-	if (!line->hist_depth)
+static void	feed_line(t_line *line, char *entry)
+{
+	cursor_to_home(line);
+	tputs(tgetstr("cd", NULL), 0, &tc_putc);
+	ft_bzero(line->cmd, MAX_CMD_LEN);
+	ft_strcpy(line->cmd, entry);
+	line->cursor = ft_strlen(entry);
+	line->length = line->cursor;
+}
+
+void		new_hist_entry(t_line *line, t_dlist **hist)
+{
+	if (line->hist && !line->hist_depth)
 		return ;
 	line->hist_depth--;
 	*hist = (*hist)->prev;
-	entry = (*hist)->content;
+	feed_line(line, (*hist)->content);
+	ft_putstr_fd(line->cmd, 0);
 	if (!line->hist_depth)
 		ft_dlstremovenode(hist);
-	return (0);
 }
 
+void		old_hist_entry(t_line *line, t_dlist **hist)
+{
+	if (line->hist && line->hist_depth == line->hist_size)
+		return ;
+	if (!line->hist_depth)
+		ft_dlstadd(hist, ft_dlstnew(line->cmd, ft_strlen(line->cmd) + 1));
+	*hist = (*hist)->next;
+	line->hist_depth++;
+	feed_line(line, (*hist)->content);
+	ft_putstr_fd(line->cmd, 0);
+}
 
-/* int			old_hist_entry(t_dlist **lst, t_dlist **hist, t_line *line) */
-/* { */
-/* 	char	*entry; */
-
-/* 	if (!(*hist) || !(*hist)->next) // PROBLEM WHEN ONLY 1 ENTRY */
-/* 		return (1); */
-/* 	cursor_to_home(line, lst); */
-/* 	if (!line->hist_depth) */
-/* 	{ */
-/* 		entry = ft_dlst_to_nstr(*lst, ft_dlstsize(*lst) - 1); */
-/* 		ft_dlstadd(hist, ft_dlstnew(entry, ft_strlen(entry) + 1)); */
-/* 		free(entry); */
-/* 	} */
-/* 	del_line(lst, line); */
-/* 	*hist = (*hist)->next; */
-/* 	entry = (*hist)->content; */
-/* 	while (*entry) */
-/* 		insert_char(line, *(entry++), lst); */
-/* 	line->hist_depth++; */
-/* 	return (0); */
-/* } */
-
-/*
-** Opens the file pointed by path and appends the new history entry.
-** Returns 0 on success, 1 otherwise.
-*/
-
-int			append_history(char *path, char *entry)
+void		append_history(char *entry)
 {
 	int		fd;
 
-	fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	fd = open(HISTORY_PATH, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 	{
 		ft_putendl_fd("Could not open history", 2);
-		return (1);
+		return ;
 	}
 	ft_putendl_fd(entry, fd);
 	close(fd);
-	return (0);
 }
 
-/*
-** Takes the path to the history file as an argument and processes
-** the data into a doubly-linked list for convenience of use.
-** Returns the list on success, NULL otherwise.
-*/
-
-t_dlist	*retrieve_history(char *path)
+t_dlist		*retrieve_history(void)
 {
 	int		fd;
 	t_dlist	*hist;
@@ -83,7 +76,7 @@ t_dlist	*retrieve_history(char *path)
 	size_t	len;
 
 	hist = NULL;
-	fd = open(path, O_RDONLY);
+	fd = open(HISTORY_PATH, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	while (get_next_line(fd, &line))

@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:47:05 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/16 15:26:58 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 09:52:01 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int	match_key(char *key_str, int i)
 		{KEY_CODE_SDO, KEY_SNEXT}
 	};
 
+	i = 0;
 	while (i < 11)
 		if (!ft_memcmp(key_couple[i++].key_code, key_str, MAX_KEY_LEN))
 			return (key_couple[i - 1].key_ret);
