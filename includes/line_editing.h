@@ -6,7 +6,7 @@
 /*   By: hdelaby <hdelaby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 09:52:20 by hdelaby           #+#    #+#             */
-/*   Updated: 2017/02/17 11:18:09 by hdelaby          ###   ########.fr       */
+/*   Updated: 2017/02/17 11:27:47 by hdelaby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ typedef struct	s_line
 	char	cmd[MAX_CMD_LEN];
 }				t_line;
 
-typedef struct	s_keymove
+struct	s_keymove
 {
 	int		key;
 	void	(*p)(t_line *line);
-}				t_keymove;
+};
+
+struct	s_keyhist
+{
+	int		key;
+	void	(*p)(t_line *line, t_dlist **hist);
+};
 
 char			*line_editing(void);
 
