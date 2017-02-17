@@ -3,14 +3,14 @@ Line edition tool using C termcap library
 
 ## commands
 
-`[UP]` Get newer history entry
-`[DOWN]` Get older history entry
-`[HOME]` Move cursor to the beginning
-`[END]` Move cursor to the end
-`[ALT + RIGHT]` Move cursor one word forward
-`[ALT + LEFT]` Move cursor one word backward
-`[ALT + UP]` Move cursor one line above
-`[ALT + DOWN]` Move cursor one line below
+- `[UP]` Get newer history entry
+- `[DOWN]` Get older history entry
+- `[HOME]` Move cursor to the beginning
+- `[END]` Move cursor to the end
+- `[ALT + RIGHT]` Move cursor one word forward
+- `[ALT + LEFT]` Move cursor one word backward
+- `[ALT + UP]` Move cursor one line above
+- `[ALT + DOWN]` Move cursor one line below
 
 ## todo
 
